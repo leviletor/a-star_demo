@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Qot | Studentenkoten huren in Antwerpen, Mechelen & Geel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Figtree', sans-serif;
+      background: #fff;
+      color: #111;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex; align-items: center;
+      padding: 20px 60px;
+      background: #fff;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .nav-logo { margin-right: auto; }
+    .nav-logo img { height: 62px; display: block; }
+    .nav-logo-fallback {
+      display: none; font-size: 40px; font-weight: 900;
+      letter-spacing: -2px; color: #111;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 36px;
+      font-size: 16px; font-weight: 700;
+    }
+    .nav-links a { text-decoration: none; color: #111; }
+    .nav-links a.active { text-decoration: underline; text-underline-offset: 4px; }
+    .nav-dropdown { display: flex; align-items: center; gap: 4px; cursor: pointer; font-weight: 700; }
+    .nav-cta {
+      background: #111; color: #fff;
+      padding: 14px 26px; border-radius: 4px;
+      font-weight: 800; font-size: 15px;
+      text-decoration: none;
+    }
+    .nav-lang {
+      display: flex; align-items: center; gap: 3px;
+      margin-left: 28px; font-weight: 800; font-size: 15px;
+      color: #1a3a5c; cursor: pointer;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 60px 60px 80px;
+      background: #fff;
+    }
+    .hero-left h1 {
+      font-size: clamp(2.6rem, 4.5vw, 3.8rem);
+      font-weight: 900; line-height: 1.1;
+      color: #111; margin-bottom: 20px;
+    }
+    .hero-left p { font-size: 16px; color: #555; margin-bottom: 36px; font-weight: 600; }
+    .hero-btn {
+      display: inline-block; background: #111; color: #fff;
+      font-size: 16px; font-weight: 800;
+      padding: 16px 32px; border-radius: 4px; text-decoration: none;
+    }
+    .hero-right { display: flex; justify-content: center; align-items: center; }
+
+    /* ── TICKER ── */
+    .ticker-section {
+      overflow: hidden; padding: 8px 0;
+      border-top: 1px solid #eee; border-bottom: 1px solid #eee;
+    }
+    .ticker-track {
+      display: flex; gap: 56px; width: max-content;
+      animation: scrollLeft 22s linear infinite;
+    }
+    .ticker-track span {
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 900; color: #ccc;
+      white-space: nowrap; letter-spacing: -2px;
+    }
+    @keyframes scrollLeft {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── LOCATIONS ── */
+    .locations { padding: 60px 60px 80px; background: #fff; }
+    .locations h2 { font-size: 2rem; font-weight: 900; margin-bottom: 40px; }
+    .location-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .loc-card { cursor: pointer; }
+    .loc-img-wrap {
+      position: relative; border-radius: 12px; overflow: visible;
+      margin-bottom: 28px;
+    }
+    .loc-img-wrap img {
+      width: 100%; height: 230px; object-fit: cover;
+      border-radius: 12px; display: block;
+      transition: transform .3s;
+    }
+    .loc-card:hover .loc-img-wrap img { transform: scale(1.03); }
+    /* Circle badge */
+    .loc-badge {
+      position: absolute; bottom: -22px; right: 14px;
+      width: 66px; height: 66px;
+      animation: rotateBadge 10s linear infinite;
+    }
+    @keyframes rotateBadge { to { transform: rotate(360deg); } }
+    .badge-circle-bg { fill: #fff; stroke: #111; stroke-width: 1.5; }
+    .badge-text-path { font-size: 8.5px; font-weight: 700; fill: #111; }
+    /* Arrow (not rotating with text wrapper) */
+    .loc-badge-arrow {
+      position: absolute; bottom: -22px; right: 14px;
+      width: 66px; height: 66px;
+      pointer-events: none;
+    }
+
+    .loc-name { font-size: 1.3rem; font-weight: 900; margin-bottom: 10px; }
+    .loc-meta { display: flex; align-items: center; gap: 12px; font-size: 14px; color: #444; font-weight: 600; }
+    .loc-meta .pipe { color: #ccc; }
+
+    /* ── ABOUT ── */
+    .about {
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center; gap: 40px;
+      padding: 60px 60px 100px;
+    }
+    .about-text h2 { font-size: 2rem; font-weight: 900; margin-bottom: 24px; }
+    .about-text p {
+      font-size: 16px; color: #444; font-weight: 600;
+      line-height: 1.8; margin-bottom: 36px;
+    }
+    .about-btn {
+      display: inline-block; background: #111; color: #fff;
+      font-size: 15px; font-weight: 800;
+      padding: 16px 32px; border-radius: 4px; text-decoration: none;
+    }
+    .about-img-col {
+      display: flex; justify-content: center; align-items: center;
+      position: relative; height: 460px;
+    }
+    .about-oval-bg {
+      position: absolute;
+      width: 300px; height: 420px;
+      background: #9fe8e8;
+      border-radius: 50%;
+      top: 20px; left: 50%; transform: translateX(-50%);
+    }
+    .about-img-col img {
+      position: relative; z-index: 1;
+      width: 300px; height: 420px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #1c1c1c; color: #fff;
+      padding: 0 60px 40px;
+    }
+    .footer-divider { border: none; border-top: 1px solid #333; margin-bottom: 48px; }
+    .footer-grid {
+      display: grid; grid-template-columns: 1.8fr 1fr 1fr;
+      gap: 40px;
+    }
+    .footer-logo { margin-bottom: 28px; }
+    .footer-logo img { height: 58px; }
+    .footer-logo-fallback {
+      display: none; font-size: 38px; font-weight: 900;
+      color: #fff; letter-spacing: -2px;
+    }
+    .footer-contact-row {
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 18px;
+    }
+    .f-icon {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: #333; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .f-icon svg { width: 18px; height: 18px; fill: #fff; }
+    .footer-contact-row a {
+      color: #fff; text-decoration: none;
+      font-size: 15px; font-weight: 700;
+    }
+    .footer-col h4 { font-size: 17px; font-weight: 800; margin-bottom: 20px; }
+    .footer-col a {
+      display: block; color: #bbb;
+      font-size: 15px; font-weight: 600;
+      text-decoration: none; margin-bottom: 12px;
+      transition: color .2s;
+    }
+    .footer-col a:hover { color: #fff; }
+
+    /* ── PASSWORD GATE ── */
+    .password-gate {
+      position: fixed; inset: 0; z-index: 99999;
+      background: #111; color: #fff;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      font-family: 'Figtree', sans-serif;
+    }
+    .password-gate.hidden { display: none; }
+    .password-gate h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 24px; }
+    .password-gate form { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    .password-gate input {
+      padding: 14px 20px; font-size: 16px; border: 2px solid #333;
+      border-radius: 4px; background: #1c1c1c; color: #fff;
+      min-width: 260px;
+    }
+    .password-gate input:focus { outline: none; border-color: #555; }
+    .password-gate button {
+      padding: 14px 32px; font-size: 16px; font-weight: 800;
+      background: #fff; color: #111; border: none; border-radius: 4px;
+      cursor: pointer;
+    }
+    .password-gate .error { color: #e74c3c; font-size: 14px; font-weight: 600; margin-top: 8px; }
+    .page-content { display: none; }
+    .page-content.visible { display: block; }
+  </style>
+</head>
+<body>
+
+<!-- ══ PASSWORD GATE ══ -->
+<div class="password-gate" id="password-gate">
+  <h2>Voer het wachtwoord in</h2>
+  <form id="password-form">
+    <input type="password" id="password-input" placeholder="Wachtwoord" autocomplete="off" autofocus />
+    <button type="submit">Toegang</button>
+  </form>
+  <p class="error" id="password-error"></p>
+</div>
+
+<!-- ══ PAGE CONTENT (hidden until unlocked) ══ -->
+<div class="page-content" id="page-content">
+
+<!-- ══ NAV ══ -->
+<nav>
+  <div class="nav-logo">
+    <img src="https://cdn.prod.website-files.com/668c1b0f10ba37917a3f6cae/669183dbb801764b2e4ed048_logo-zwart.svg"
+      alt="QOT Student Housing"
+      onerror="this.style.display='none';document.getElementById('nav-logo-fb').style.display='block'">
+    <span class="nav-logo-fallback" id="nav-logo-fb">QOT</span>
+  </div>
+  <div class="nav-links">
+    <a href="#" class="active">Home</a>
+    <span class="nav-dropdown">
+      Koten
+      <svg width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round"><path d="M1 1l5 5 5-5"/></svg>
+    </span>
+    <a href="#" class="nav-cta">Contacteer ons</a>
+    <span class="nav-lang">
+      NL
+      <svg width="10" height="7" viewBox="0 0 10 7" fill="none" stroke="#1a3a5c" stroke-width="2" stroke-linecap="round"><path d="M1 1l4 4 4-4"/></svg>
+    </span>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-left">
+    <h1>Vind het<br>perfecte kot<br>voor jou!</h1>
+    <p>Studenten accommodaties in Antwerpen,<br>Mechelen en Geel</p>
+    <a href="#" class="hero-btn">Ontdek al onze locaties</a>
+  </div>
+  <div class="hero-right">
+    <svg width="440" height="400" viewBox="0 0 440 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="10" y="80" width="250" height="250" rx="52" fill="#8dcfe8"/>
+      <circle cx="230" cy="195" r="110" fill="#7db87a"/>
+      <circle cx="330" cy="130" r="108" fill="#e8dc72"/>
+      <rect x="260" y="240" width="160" height="150" rx="4" fill="#eda98e"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ══ TICKER ══ -->
+<div class="ticker-section">
+  <div class="ticker-track">
+    <span>Antwerp</span><span>&nbsp;&nbsp;Mechelen</span><span>&nbsp;&nbsp;Geel</span>
+    <span>&nbsp;&nbsp;Antwerp</span><span>&nbsp;&nbsp;Mechelen</span><span>&nbsp;&nbsp;Geel</span>
+    <span>&nbsp;&nbsp;Antwerp</span><span>&nbsp;&nbsp;Mechelen</span><span>&nbsp;&nbsp;Geel</span>
+    <span>&nbsp;&nbsp;Antwerp</span><span>&nbsp;&nbsp;Mechelen</span><span>&nbsp;&nbsp;Geel</span>
+  </div>
+</div>
+
+<!-- ══ LOCATIONS ══ -->
+<section class="locations">
+  <h2>Bekijk al onze locaties</h2>
+  <div class="location-cards">
+
+    <!-- Antwerpen -->
+    <div class="loc-card">
+      <div class="loc-img-wrap">
+        <img src="https://cdn.prod.website-files.com/668c1b0f10ba37917a3f6d5a/66a11df7d0547b71bb0b09f1_petro-paulo-329469_1920.jpg" alt="Antwerpen">
+        <svg class="loc-badge" viewBox="0 0 66 66">
+          <circle cx="33" cy="33" r="31" class="badge-circle-bg"/>
+          <defs><path id="ring1" d="M33,5 a28,28 0 1,1 -0.01,0 z"/></defs>
+          <text class="badge-text-path"><textPath href="#ring1">Details · View · Details · View · </textPath></text>
+        </svg>
+        <svg class="loc-badge-arrow" viewBox="0 0 66 66">
+          <line x1="24" y1="40" x2="41" y2="26" stroke="#111" stroke-width="2" stroke-linecap="round"/>
+          <polyline points="31,24 41,26 43,36" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="loc-name">Antwerpen</div>
+      <div class="loc-meta">
+        <svg width="17" height="12" viewBox="0 0 20 13" fill="none" stroke="#444" stroke-width="1.8" stroke-linecap="round"><rect x="1" y="5" width="18" height="7" rx="1.5"/><path d="M1 5V3.5A1.5 1.5 0 012.5 2H7v3"/><path d="M19 5V3.5A1.5 1.5 0 0017.5 2H13v3"/></svg>
+        114 bd
+        <span class="pipe">|</span>
+        v.a. <strong>€520</strong>
+      </div>
+    </div>
+
+    <!-- Geel -->
+    <div class="loc-card">
+      <div class="loc-img-wrap">
+        <img src="https://cdn.prod.website-files.com/668c1b0f10ba37917a3f6d5a/66a11e2a8e0c78e4c0d4770a_geel.webp" alt="Geel">
+        <svg class="loc-badge" viewBox="0 0 66 66">
+          <circle cx="33" cy="33" r="31" class="badge-circle-bg"/>
+          <defs><path id="ring2" d="M33,5 a28,28 0 1,1 -0.01,0 z"/></defs>
+          <text class="badge-text-path"><textPath href="#ring2">Details · View · Details · View · </textPath></text>
+        </svg>
+        <svg class="loc-badge-arrow" viewBox="0 0 66 66">
+          <line x1="24" y1="40" x2="41" y2="26" stroke="#111" stroke-width="2" stroke-linecap="round"/>
+          <polyline points="31,24 41,26 43,36" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="loc-name">Geel</div>
+      <div class="loc-meta">
+        <svg width="17" height="12" viewBox="0 0 20 13" fill="none" stroke="#444" stroke-width="1.8" stroke-linecap="round"><rect x="1" y="5" width="18" height="7" rx="1.5"/><path d="M1 5V3.5A1.5 1.5 0 012.5 2H7v3"/><path d="M19 5V3.5A1.5 1.5 0 0017.5 2H13v3"/></svg>
+        34 bd
+        <span class="pipe">|</span>
+        v.a. <strong>€295</strong>
+      </div>
+    </div>
+
+    <!-- Mechelen -->
+    <div class="loc-card">
+      <div class="loc-img-wrap">
+        <img src="https://cdn.prod.website-files.com/668c1b0f10ba37917a3f6d5a/66a120a58fcc5ab75410f3a4_mechelen.jpg" alt="Mechelen">
+        <svg class="loc-badge" viewBox="0 0 66 66">
+          <circle cx="33" cy="33" r="31" class="badge-circle-bg"/>
+          <defs><path id="ring3" d="M33,5 a28,28 0 1,1 -0.01,0 z"/></defs>
+          <text class="badge-text-path"><textPath href="#ring3">Details · View · Details · View · </textPath></text>
+        </svg>
+        <svg class="loc-badge-arrow" viewBox="0 0 66 66">
+          <line x1="24" y1="40" x2="41" y2="26" stroke="#111" stroke-width="2" stroke-linecap="round"/>
+          <polyline points="31,24 41,26 43,36" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="loc-name">Mechelen</div>
+      <div class="loc-meta">
+        <svg width="17" height="12" viewBox="0 0 20 13" fill="none" stroke="#444" stroke-width="1.8" stroke-linecap="round"><rect x="1" y="5" width="18" height="7" rx="1.5"/><path d="M1 5V3.5A1.5 1.5 0 012.5 2H7v3"/><path d="M19 5V3.5A1.5 1.5 0 0017.5 2H13v3"/></svg>
+        61 bd
+        <span class="pipe">|</span>
+        v.a. <strong>€490</strong>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ ABOUT ══ -->
+<section class="about">
+  <div class="about-text">
+    <h2>Wat doet QOT?</h2>
+    <p>Welkom bij QOT! Onderdeel van A-stargroup. Wij verhuren gezellige en functionele studentenkoten in België met uitstekende service. Of je nu op zoek bent naar een plek in de stad, dicht bij de campus, een zelfstandig studio of een kamer met gedeelde faciliteiten – wij hebben de perfecte plek voor jou. Bekijk ons aanbod en vind jouw ideale studieplek!</p>
+    <a href="https://www.a-stargroup.com/" class="about-btn" target="_blank">Lees meer over A-stargroup</a>
+  </div>
+  <div class="about-img-col">
+    <div class="about-oval-bg"></div>
+    <img src="https://cdn.prod.website-files.com/668c1b0f10ba37917a3f6cae/668c1b0f10ba37917a3f6daf_about-banner.png"
+      alt="QOT gebouwen"
+      onerror="this.style.display='none'">
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <hr class="footer-divider">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">
+        <img src="https://cdn.prod.website-files.com/668c1b0f10ba37917a3f6cae/669197708cb9bbf78587a9c2_logo-wit.svg"
+          alt="QOT"
+          onerror="this.style.display='none';document.getElementById('footer-logo-fb').style.display='block'">
+        <span class="footer-logo-fallback" id="footer-logo-fb">QOT</span>
+      </div>
+      <div class="footer-contact-row">
+        <div class="f-icon">
+          <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.58.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.01l-2.19 2.2z"/></svg>
+        </div>
+        <a href="tel:+32470010101">+32 470 01 01 01</a>
+      </div>
+      <div class="footer-contact-row">
+        <div class="f-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <a href="mailto:verhuur@qotstudent.be">verhuur@qotstudent.be</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#">Home</a>
+      <a href="#">Koten</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="#">Privacy policy</a>
+      <a href="#">Terms and conditions</a>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /page-content -->
+
+<!-- ══ LUA CHAT WIDGET (loaded only after password) ══ -->
+<script>
+  (function() {
+    var PASSWORD = "A-starAndLua";
+    var gate = document.getElementById("password-gate");
+    var content = document.getElementById("page-content");
+    var form = document.getElementById("password-form");
+    var input = document.getElementById("password-input");
+    var errorEl = document.getElementById("password-error");
+
+    function unlock() {
+      gate.classList.add("hidden");
+      content.classList.add("visible");
+      var s = document.createElement("script");
+      s.src = "https://lua-ai-global.github.io/lua-pop/lua-pop.umd.js";
+      s.onload = function() {
+        if (window.LuaPop) {
+          window.LuaPop.init({
+            agentId: "baseAgent_agent_1772313882974_hm5n1kddw",
+            environment: "production",
+            position: "bottom-right",
+            chatTitle: "A-Star Assistant",
+            welcomeMessage: "Hi! How can I help you today?",
+            chatInputPlaceholder: "Type a message…",
+            theme: "light",
+            sessionId: "session-" + Date.now(),
+            popupButtonStyles: { zIndex: "99999" }
+          });
+        }
+      };
+      document.body.appendChild(s);
+    }
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      errorEl.textContent = "";
+      if (input.value === PASSWORD) {
+        unlock();
+      } else {
+        errorEl.textContent = "Ongeldig wachtwoord.";
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>
